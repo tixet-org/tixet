@@ -1,0 +1,44 @@
+<ion-header [translucent]="true" collapse="fade">
+  <ion-toolbar class="ion-no-border">
+    <ion-grid class="ion-no-padding">
+      <ion-row class="flex ion-align-items-center">
+
+        <ion-col class="flex ion-justify-content-start ion-align-items-center" size-lg="4">
+          <ion-button [routerLink]="'/'" fill="clear">
+            <ion-icon class="ion-hide-sm-down ion-padding-start" name="ticket-outline" slot="start" [routerLink]="'/'"/>
+            Tixet
+          </ion-button>
+        </ion-col>
+
+        <ion-col class="flex ion-justify-content-end ion-padding-end">
+          <ion-buttons>
+            <div>
+              <ion-button *ngFor="let page of menuButtons" [routerLink]="[page.url[0]]"
+                          class="ion-hide-lg-down badge-button"
+                          [color]="page.url.includes(selectedPath) ? 'primary' : ''" style="position: relative;">
+                <ion-icon [name]="page.icon" slot="start"/>
+                <ion-label>{{page.title}}</ion-label>
+              </ion-button>
+            </div>
+
+            <ng-content/>
+
+            <ion-button *ngIf="(tanglePayService.currentAddress$ | async) === null" (click)="connectWallet()"
+                        class="ion-margin-start ion-margin-end" color="primary" fill="outline">
+              <ion-icon name="log-in-outline" slot="start"/>
+              <ion-label>Connect Wallet</ion-label>
+            </ion-button>
+
+            <ion-button *ngIf="tanglePayService.currentAddress$ | async" routerLink="/profile"
+                        router-direction="forward"
+                        class="ion-margin-start ion-hide-lg-down" fill="clear">
+              <ion-icon name="person-circle-outline" slot="icon-only"
+                        [color]="selectedPath === '/profile' ? 'primary' : 'text-color'"/>
+            </ion-button>
+
+          </ion-buttons>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>

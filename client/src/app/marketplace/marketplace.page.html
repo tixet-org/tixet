@@ -1,0 +1,47 @@
+<app-nav-top>
+  <ion-back-button></ion-back-button>
+</app-nav-top>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Ticket Marketplace</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-hide-lg-down" size="2"/>
+
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title class="flex ion-justify-content-between">
+              Ticket Marketplace
+
+              <ion-button fill="outline" color="secondary" routerLink="/redeem" size="small">
+                <ion-icon slot="start" name="qr-code-outline"></ion-icon>
+                Redeem Ticket
+              </ion-button>
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item *ngFor="let ticket of marketplaceTickets">
+                <ion-label>
+                  <h2>{{ticket.nfts[0].name.slice(0, -2)}}</h2>
+                  <p>{{ticket.description}}</p>
+                </ion-label>
+                <ion-button slot="end" color="primary" [routerLink]="['/event', ticket.eventId]">
+                  More details
+                </ion-button>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col class="ion-hide-lg-down" size="2"/>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,49 @@
+<app-nav-top>
+  <ion-back-button defaultHref="/"></ion-back-button>
+</app-nav-top>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-hide-lg-down" size="2"/>
+
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-segment [(ngModel)]="segment">
+              <ion-segment-button value="wallet">
+                Wallet Tickets
+              </ion-segment-button>
+              <ion-segment-button value="marketplace">
+                Marketplace Tickets
+              </ion-segment-button>
+            </ion-segment>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-list *ngIf="segment === 'wallet'">
+              <ion-item *ngFor="let ticket of walletTickets" [routerLink]="['/ticket', ticket.nftId]">
+                <ion-label>
+                  <h2>{{ ticket.name }}</h2>
+                  <p>{{ ticket.attributes[0].eventDate | date: 'medium' }}</p>
+                </ion-label>
+              </ion-item>
+            </ion-list>
+
+            <ion-list *ngIf="segment === 'marketplace'">
+              <ion-item *ngFor="let ticket of marketplaceTickets" [routerLink]="['/event', ticket.eventId]">
+                <ion-label>
+                  <h2>{{ ticket.eventName }}</h2>
+                  <p>{{ ticket.description }}</p>
+                  <p>{{ticket.nfts.length - 1}} Tickets available</p>
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col class="ion-hide-lg-down" size="2"/>
+    </ion-row>
+  </ion-grid>
+</ion-content>

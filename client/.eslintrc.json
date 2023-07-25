@@ -1,0 +1,85 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "parserOptions": {
+        "project": [
+          "tsconfig.eslint.json"
+        ],
+        "createDefaultProgram": true
+      },
+      "extends": [
+        "airbnb-typescript",
+        "plugin:@angular-eslint/ng-cli-compat",
+        "plugin:@angular-eslint/ng-cli-compat--formatting-add-on",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "rules": {
+        "@typescript-eslint/lines-between-class-members": [
+          "error",
+          "always",
+          {
+            "exceptAfterSingleLine": true
+          }
+        ],
+        "no-plusplus": [
+          "warn",
+          {
+            "allowForLoopAfterthoughts": true
+          }
+        ],
+        "class-methods-use-this": "off",
+        "import/prefer-default-export": "off",
+        "linebreak-style": "off",
+        "@angular-eslint/component-class-suffix": [
+          "error",
+          {
+            "suffixes": [
+              "Page",
+              "Component"
+            ]
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ],
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ],
+        "no-param-reassign": "warn",
+        "no-restricted-syntax": "warn",
+        "prefer-spread": "warn",
+        "no-await-in-loop": "warn",
+        "@typescript-eslint/prefer-for-of": "warn",
+        "no-continue": "warn",
+        "no-bitwise": "warn",
+        "react/jsx-filename-extension": "off"
+      }
+    },
+    {
+      "files": [
+        "*.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended"
+      ],
+      "rules": {}
+    }
+  ]
+}

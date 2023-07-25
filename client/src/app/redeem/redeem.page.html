@@ -1,0 +1,59 @@
+<app-nav-top>
+  <ion-back-button defaultHref="/"></ion-back-button>
+</app-nav-top>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-hide-lg-down" size="2"/>
+
+      <ion-col size-lg="8">
+        <ion-card>
+          <ion-card-content>
+            <ion-button expand="block" class="ion-margin-bottom">
+              <ion-icon slot="start" name="qr-code-outline"/>
+              Scan Ticket
+            </ion-button>
+
+            <ion-accordion-group>
+              <ion-accordion value="first">
+                <ion-item slot="header" color="light">
+                  <ion-label>Manual ticket redemption</ion-label>
+                </ion-item>
+
+                <div class="ion-padding" slot="content">
+                  <form #redeemForm="ngForm" (ngSubmit)="onSubmit(redeemForm)">
+                    <ion-item>
+                      <ion-label position="floating">Nft Id</ion-label>
+                      <ion-input type="text" name="nftId" ngModel required/>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label position="floating">Event Id</ion-label>
+                      <ion-input type="text" name="eventId" ngModel required/>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label position="floating">Public Key</ion-label>
+                      <ion-input type="text" name="publicKey" ngModel required/>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label position="floating">Signed Message</ion-label>
+                      <ion-input type="text" name="signedMessage" ngModel required/>
+                    </ion-item>
+
+                    <ion-button type="submit" class="ion-margin-top" [disabled]="!redeemForm.valid || isRedeeming"
+                                expand="block">
+                      Redeem
+                    </ion-button>
+                  </form>
+                </div>
+              </ion-accordion>
+            </ion-accordion-group>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col class="ion-hide-lg-down" size="2"/>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
